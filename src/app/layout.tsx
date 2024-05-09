@@ -1,6 +1,14 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "@/components/ui/navigation-menu";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +24,26 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <head />
+      <body className={inter.className}>
+        <nav className="flex items-center p-3">
+          OrdersPlus
+          <div>
+            <NavigationMenu>
+              <NavigationMenuList>
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger>Orders</NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    <NavigationMenuLink>New</NavigationMenuLink>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+              </NavigationMenuList>
+            </NavigationMenu>
+            <NavigationMenu />
+          </div>
+        </nav>
+        {children}
+      </body>
     </html>
   );
 }
